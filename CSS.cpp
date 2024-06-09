@@ -53,8 +53,7 @@ int main() {
     cin.tie(0);
     cout.tie(0);
 
-    int n;
-    cin >> n;
+    int n, m; cin >> n >> m;
 
     set<pair<int, int>> edges;
 
@@ -64,9 +63,8 @@ int main() {
     vector<int> in(n, 0);
     vector<int> out(n, 0);
 
-    for (int i = 1; i <= n; i++) {
-        int u; u = i;
-        int v; cin >> v;
+    for (int i = 1; i <= m; i++) {
+        int u, v; cin >> u >> v;
 
         --u;
         --v;
