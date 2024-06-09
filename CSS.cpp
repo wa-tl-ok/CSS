@@ -124,7 +124,7 @@ int main() {
         ++nodes_in_CSS_component[CSS[i]];
     }
 
-    int Components = color;
+    int Components = color + 1;
 
     return 0;
 }
