@@ -108,7 +108,7 @@ int main() {
         }
     }
 
-    vector<set<int>> G(color);
+    vector<set<int>> G(color + 1);
 
     for (auto p : edges) {
         int u = p.first;
