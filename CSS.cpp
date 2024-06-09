@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <algorithm>
 #include <cmath>
 #include <vector>
@@ -37,7 +37,7 @@ void dfs(int v) {
     top_sort.push_back(v);
 }
 
-int color = 0;
+int color = -1;
 
 void Go(int v) {
     CSS[v] = color;
@@ -56,8 +56,11 @@ int main() {
     int n, m;
     cin >> n >> m;
 
+    set<pair<int, int>> edges;
+
     g.resize(n);
     r_g.resize(n);
+
     vector<int> in(n, 0);
     vector<int> out(n, 0);
 
@@ -68,11 +71,15 @@ int main() {
         --u;
         --v;
 
-        g[u].push_back(v);
-        r_g[v].push_back(u);
+        if (u != v) {
+            edges.insert({ u, v });
 
-        ++out[u];
-        ++in[v];
+            g[u].push_back(v);
+            r_g[v].push_back(u);
+
+            ++out[u];
+            ++in[v];
+        }
     }
 
     vis.resize(n);
@@ -82,12 +89,10 @@ int main() {
 
     int v = 0;
     for (int u = 0; u < n; u++) {
-        if (in[u] == 0) {
-            v = u;
+        if (vis[u] == false) {
+            dfs(u);
         }
     }
-
-    dfs(v); 
 
     reverse(top_sort.begin(), top_sort.end());
 
@@ -103,8 +108,16 @@ int main() {
         }
     }
 
-    for (int v = 0; v < n; v++) {
-        cout << CSS[v] << ' ';
+    vector<set<int>> G(color);
+
+    int K = 0;
+
+    for (auto p : edges) {
+        int u = p.first;
+        int v = p.second;
+        if (CSS[u] != CSS[v]) {
+            G[CSS[u]].insert(CSS[v]);
+        }
     }
 
     return 0;
