@@ -118,10 +118,10 @@ int main() {
         }
     }
 
-    map<int, int> nodes_in_CSS_component;
+    map<int, int> weight_component;
 
     for (int i = 0; i < n; i++) {
-        ++nodes_in_CSS_component[CSS[i]];
+        ++weight_component[CSS[i]];
     }
 
     int Components = color + 1;
