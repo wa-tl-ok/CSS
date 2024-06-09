@@ -87,7 +87,6 @@ int main() {
         vis[i] = false;
     }
 
-    int v = 0;
     for (int u = 0; u < n; u++) {
         if (vis[u] == false) {
             dfs(u);
