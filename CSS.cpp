@@ -53,8 +53,8 @@ int main() {
     cin.tie(0);
     cout.tie(0);
 
-    int n, m;
-    cin >> n >> m;
+    int n;
+    cin >> n;
 
     set<pair<int, int>> edges;
 
@@ -64,9 +64,9 @@ int main() {
     vector<int> in(n, 0);
     vector<int> out(n, 0);
 
-    for (int i = 0; i < m; i++) {
-        int u, v;
-        cin >> u >> v;
+    for (int i = 1; i <= n; i++) {
+        int u; u = i;
+        int v; cin >> v;
 
         --u;
         --v;
@@ -110,8 +110,6 @@ int main() {
 
     vector<set<int>> G(color);
 
-    int K = 0;
-
     for (auto p : edges) {
         int u = p.first;
         int v = p.second;
@@ -119,6 +117,14 @@ int main() {
             G[CSS[u]].insert(CSS[v]);
         }
     }
+
+    map<int, int> nodes_in_CSS_component;
+
+    for (int i = 0; i < n; i++) {
+        ++nodes_in_CSS_component[CSS[i]];
+    }
+
+    int Components = color;
 
     return 0;
 }
