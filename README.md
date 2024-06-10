@@ -1,2 +1,2 @@
-# CSS
-Find CSS
+# SCC
+Find SCC
