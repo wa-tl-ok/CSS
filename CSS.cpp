@@ -21,7 +21,7 @@
 using namespace std;
 
 vector<int> top_sort;
-vector<int> CSS;
+vector<int> SCC;
 vector<int> vis;
 vector<vector<int>> g;
 vector<vector<int>> r_g;
@@ -40,9 +40,9 @@ void dfs(int v) {
 int color = -1;
 
 void Go(int v) {
-    CSS[v] = color;
+    SCC[v] = color;
     for (auto u : r_g[v]) {
-        if (CSS[u] == -1) {
+        if (SCC[u] == -1) {
             Go(u);
         }
     }
@@ -93,13 +93,13 @@ int main() {
 
     reverse(top_sort.begin(), top_sort.end());
 
-    CSS.resize(n);
+    SCC.resize(n);
     for (int i = 0; i < n; i++) {
-        CSS[i] = -1;
+        SCC[i] = -1;
     }
 
     for (int i = 0; i < n; i++) {
-        if (CSS[top_sort[i]] == -1) {
+        if (SCC[top_sort[i]] == -1) {
             ++color;
             Go(top_sort[i]);
         }
@@ -110,15 +110,15 @@ int main() {
     for (auto p : edges) {
         int u = p.first;
         int v = p.second;
-        if (CSS[u] != CSS[v]) {
-            G[CSS[u]].insert(CSS[v]);
+        if (SCC[u] != SCC[v]) {
+            G[SCC[u]].insert(SCC[v]);
         }
     }
 
     map<int, int> weight_component;
 
     for (int i = 0; i < n; i++) {
-        ++weight_component[CSS[i]];
+        ++weight_component[SCC[i]];
     }
 
     int Components = color + 1;
