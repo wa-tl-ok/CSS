@@ -60,9 +60,6 @@ int main() {
     g.resize(n);
     r_g.resize(n);
 
-    vector<int> in(n, 0);
-    vector<int> out(n, 0);
-
     for (int i = 1; i <= m; i++) {
         int u, v; cin >> u >> v;
 
@@ -74,9 +71,6 @@ int main() {
 
             g[u].push_back(v);
             r_g[v].push_back(u);
-
-            ++out[u];
-            ++in[v];
         }
     }
 
